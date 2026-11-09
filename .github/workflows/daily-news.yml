@@ -1,0 +1,30 @@
+name: Daily Telegram news digest
+
+on:
+  schedule:
+    # 08:00 Malaysia Time (UTC+8) = 00:00 UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Send yesterday's news digest
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ 8838881853:AAF35S_TByxuDfg43dw7Ndr1HfR-9aqAYBY }}
+          TELEGRAM_CHAT_ID: ${{ 8838881853 }}
+          OPENAI_API_KEY: ${{ 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 }}
+        run: python news_agent.py
