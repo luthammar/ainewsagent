@@ -231,8 +231,8 @@ def make_summaries(stories):
 
 
 def send_telegram(text):
-    token = os.environ["8838881853:AAF35S_TByxuDfg43dw7Ndr1HfR-9aqAYBY"].strip()
-    chat_id = os.environ["8838881853"].strip()
+    token = os.environ["TELEGRAM_BOT_TOKEN"].strip()
+    chat_id = os.environ["TELEGRAM_CHAT_ID"].strip()
     response = requests.post(
         f"https://api.telegram.org/bot{token}/sendMessage",
         json={
@@ -272,7 +272,7 @@ def create_messages(target_day, stories, summaries):
 
 
 def main():
-    for name in ("8838881853:AAF35S_TByxuDfg43dw7Ndr1HfR-9aqAYBY", "8838881853"):
+    for name in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
         if not os.getenv(name):
             raise RuntimeError(f"GitHub Actions secret {name} is missing.")
 
