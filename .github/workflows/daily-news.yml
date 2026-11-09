@@ -24,7 +24,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Send yesterday's news digest
         env:
-          TELEGRAM_BOT_TOKEN: ${{ 8838881853:AAF35S_TByxuDfg43dw7Ndr1HfR-9aqAYBY }}
-          TELEGRAM_CHAT_ID: ${{ 8838881853 }}
-          OPENAI_API_KEY: ${{ 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 }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python news_agent.py
